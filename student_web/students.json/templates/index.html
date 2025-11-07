@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result Checker</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .container {
+            background: white;
+            width: 420px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 10px gray;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 8px;
+            border-radius: 6px;
+            border: 1px solid gray;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .card {
+            margin-top: 12px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fafafa;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🎓 Student Result Checker</h2>
+        <p>Roll number ya name me se koi bhi daalo (donon dene ki zarurat nahi)</p>
+
+        <form method="POST">
+            <input type="text" name="roll" placeholder="Roll Number (e.g. 101)"><br>
+            <input type="text" name="name" placeholder="Name (e.g. Rahul)"><br>
+            <button type="submit">Check Result</button>
+        </form>
+
+        {% if message %}
+            <p style="color: red; margin-top:10px;">{{ message }}</p>
+        {% endif %}
+
+        {% if results %}
+            <h3 style="margin-top:10px;">Found {{ results|length }} result(s):</h3>
+            {% for r in results %}
+                <div class="card">
+                    <strong>{{ r.name }}</strong> (Roll: {{ r.roll }})<br>
+                    Marks: {{ r.marks }} &nbsp; | &nbsp; Status: <strong>{{ r.status }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
